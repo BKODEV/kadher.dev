@@ -1,0 +1,120 @@
+:host { display: block; }
+
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+.contact-prose h3 {
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 500; letter-spacing: -0.025em;
+  margin: 12px 0 16px; line-height: 1.05;
+  text-wrap: balance;
+}
+.contact-prose h3 .accent { color: var(--accent); font-style: italic; font-weight: 400; }
+.contact-prose p {
+  color: var(--text-dim); font-size: 16px;
+  margin: 0 0 28px; max-width: 44ch;
+}
+.contact-direct { display: flex; flex-direction: column; gap: 4px; }
+.contact-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; border-top: 1px solid var(--border);
+  gap: 16px;
+}
+.contact-row:last-child { border-bottom: 1px solid var(--border); }
+.contact-row .k {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+}
+.contact-row .v {
+  font-size: 15px; color: var(--text);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color .15s ease;
+}
+.contact-row a.v:hover { color: var(--accent); }
+
+.contact-form {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.contact-form::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 0% 100%, var(--accent-soft), transparent 50%);
+  pointer-events: none;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; position: relative; }
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field.full { grid-column: 1 / -1; }
+.form-field label {
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+}
+.form-field label .hint { text-transform: none; opacity: 0.6; letter-spacing: 0; }
+.form-field input,
+.form-field textarea,
+.form-field select {
+  font-family: inherit;
+  font-size: 14.5px;
+  color: var(--text);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: border-color .2s ease, background .2s ease;
+}
+.form-field textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  outline: none; border-color: var(--accent); background: var(--surface-2);
+}
+.form-field .err {
+  font-family: var(--font-mono); font-size: 10.5px;
+  color: #ff6b7a;
+}
+.form-actions {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 18px; gap: 12px; position: relative;
+  flex-wrap: wrap;
+}
+.form-note { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+.btn-submit {
+  background: var(--accent); color: var(--accent-ink);
+  padding: 12px 22px; border-radius: 999px;
+  border: none; font-weight: 600; font-size: 14px;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: transform .15s ease, filter .15s ease;
+}
+.btn-submit:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.08); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.success {
+  position: absolute; inset: 0;
+  background: var(--surface);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; text-align: center; padding: 20px;
+  animation: fadeIn .3s ease;
+  z-index: 3;
+}
+.success .check {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.success-title { font-size: 18px; font-weight: 600; }
+.success-sub { color: var(--text-dim); font-size: 14px; max-width: 300px; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}

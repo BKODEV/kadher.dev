@@ -1,0 +1,25 @@
+<section class="section" id="journey">
+  <div class="section-head" appReveal>
+    <span class="section-num">04 ——</span>
+    <h2>Parcours</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="timeline">
+    @for (j of entries; track j.title + j.year) {
+      <div class="tl-item" [class.now]="j.now" appReveal>
+        <div class="tl-year">{{ j.year }}</div>
+        <div class="tl-body">
+          <h4>{{ j.title }}</h4>
+          <div class="tl-org">
+            <span>{{ j.org }}</span>
+            @if (j.badge) {
+              <span class="badge">{{ j.badge }}</span>
+            }
+          </div>
+          <div class="tl-desc">{{ j.desc }}</div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

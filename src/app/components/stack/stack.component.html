@@ -1,0 +1,26 @@
+<section class="section" id="stack">
+  <div class="section-head" appReveal>
+    <span class="section-num">02 ——</span>
+    <h2>Stack technique</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="stack-grid">
+    @for (s of stack; let i = $index; track s.kind) {
+      <div class="stack-card" [class.learning]="s.learning" appReveal>
+        <div class="stack-head">
+          <div class="name">
+            <span class="stack-icon">{{ s.icon }}</span>
+            <span>{{ s.kind }}</span>
+          </div>
+          <span class="kind">{{ indexLabel(i, s.learning) }}</span>
+        </div>
+        <div class="stack-items">
+          @for (it of s.items; track it) {
+            <span class="stack-item">{{ it }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>

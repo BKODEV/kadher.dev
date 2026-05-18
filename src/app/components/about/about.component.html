@@ -1,0 +1,105 @@
+<section class="section" id="about">
+  <div class="section-head" appReveal>
+    <span class="section-num">01 ——</span>
+    <h2>À propos</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="about-grid">
+    <figure class="about-photo" appReveal>
+      <span class="corner tl" aria-hidden="true"></span>
+      <span class="corner tr" aria-hidden="true"></span>
+      <span class="corner bl" aria-hidden="true"></span>
+      <span class="corner br" aria-hidden="true"></span>
+      <img
+        ngSrc="/assets/images/about-standing.jpg"
+        width="900"
+        height="1200"
+        priority
+        alt="Bini Kadher Ouattara dans son bureau à Abidjan"
+      />
+      <figcaption class="photo-label">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Abidjan · 2026</span>
+      </figcaption>
+    </figure>
+
+    <div>
+      <div class="about-prose" appReveal>
+        <p>
+          <strong>Consultant IT indépendant</strong>, je conçois et j'opère des systèmes
+          digitaux pour des entreprises qui dépendent de leur outil informatique au
+          quotidien. Bases académiques solides — BTS Informatique · Développement d'applications — et sept années
+          de pratique terrain à construire, déployer et maintenir ce que j'ai conçu.
+        </p>
+        <p>
+          Aujourd'hui Responsable des Systèmes d'Information d'<strong>Innov Immobilier</strong>,
+          une entreprise immobilière spécialisée en appart-hôtel et rénovation. J'y ai
+          mené un projet complet d'internalisation IT — de l'audit infrastructure jusqu'au
+          déploiement en production, <strong>zéro interruption</strong> — et je pilote
+          l'ERP interne qui fait tourner le métier.
+        </p>
+        <p>
+          Je termine en parallèle une
+          <span class="accent">Ingénierie en Intelligence Économique</span> à l'ECG Abidjan —
+          pour relier exécution technique et stratégie d'entreprise, avec un focus sur la
+          veille concurrentielle, l'analyse de données et les systèmes d'aide à la décision.
+        </p>
+        <p>
+          Disponible pour des missions freelance ou une collaboration long terme — Abidjan ou remote.
+        </p>
+
+        <div class="about-tags">
+          @for (t of tags; track t) {
+            <span class="tag">{{ t }}</span>
+          }
+        </div>
+      </div>
+
+      <aside class="snapshot snapshot-strip" appReveal>
+        <div class="snapshot-head">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="snapshot-title">Aperçu · 2026</span>
+        </div>
+
+        <div class="snapshot-stats">
+          <div class="stat">
+            <div class="num">
+              <span [appCountUp]="7">7</span><span class="plus">+</span>
+            </div>
+            <div class="label">Années d'expérience</div>
+          </div>
+          <div class="stat">
+            <div class="num">
+              <span [appCountUp]="20">20</span><span class="plus">+</span>
+            </div>
+            <div class="label">Projets livrés</div>
+          </div>
+          <div class="stat">
+            <div class="num">
+              <span [appCountUp]="46">46</span>
+            </div>
+            <div class="label">Boîtes mail migrées</div>
+          </div>
+          <div class="stat">
+            <div class="num">
+              <span [appCountUp]="2">2</span>
+            </div>
+            <div class="label">Entreprises fondées</div>
+          </div>
+        </div>
+
+        <div class="snapshot-divider"></div>
+
+        <div class="snapshot-list">
+          @for (row of snapshotRows; track row.k) {
+            <div class="row">
+              <span class="k">{{ row.k }}</span>
+              <span class="v">{{ row.v }}</span>
+            </div>
+          }
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

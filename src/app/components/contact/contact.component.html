@@ -1,0 +1,137 @@
+<section class="section" id="contact">
+  <div class="section-head" appReveal>
+    <span class="section-num">05 ——</span>
+    <h2>Contact</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-prose" appReveal>
+      <span class="eyebrow">Construisons ensemble</span>
+      <h3>Un système qui freine votre activité<span class="accent"> ?</span></h3>
+      <p>
+        J'accompagne un nombre limité de clients à la fois — développement full-stack,
+        internalisation IT, ou conseil stratégique. Basé à Abidjan, je travaille avec
+        des équipes en Afrique de l'Ouest et à distance avec des clients internationaux.
+      </p>
+
+      <div class="contact-direct">
+        <div class="contact-row">
+          <span class="k">E-mail</span>
+          <a href="mailto:biniko.dev@gmail.com" class="v">
+            <app-icon name="mail" /> biniko.dev&commat;gmail.com
+          </a>
+        </div>
+        <div class="contact-row">
+          <span class="k">Téléphone</span>
+          <a href="tel:+2250749140051" class="v">
+            <app-icon name="phone" /> +225 07 49 14 00 51
+          </a>
+        </div>
+        <div class="contact-row">
+          <span class="k">LinkedIn</span>
+          <a href="https://linkedin.com/in/kadher-ouattara-329925103"
+             target="_blank" rel="noopener noreferrer" class="v">
+            <app-icon name="linkedin" /> kadher-ouattara
+          </a>
+        </div>
+        <div class="contact-row">
+          <span class="k">GitHub</span>
+          <a href="https://github.com/bkodev"
+             target="_blank" rel="noopener noreferrer" class="v">
+            <app-icon name="github" /> /bkodev
+          </a>
+        </div>
+        <div class="contact-row">
+          <span class="k">Base</span>
+          <span class="v">
+            <app-icon name="pin" /> Abidjan, Côte d'Ivoire · GMT
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form"
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+          novalidate
+          appReveal>
+      @if (sent()) {
+        <div class="success" role="status" aria-live="polite">
+          <div class="check" aria-hidden="true">✓</div>
+          <div class="success-title">Message bien reçu.</div>
+          <div class="success-sub">
+            Je vous réponds sous 48 heures, souvent plus vite. À très vite.
+          </div>
+        </div>
+      }
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="cf-name">Nom</label>
+          <input id="cf-name" type="text" formControlName="name"
+                 placeholder="Aïcha Diallo"
+                 autocomplete="name"
+                 [attr.aria-invalid]="errorFor('name') ? 'true' : null"
+                 aria-describedby="cf-name-err" />
+          @if (errorFor('name'); as err) {
+            <span class="err" id="cf-name-err">{{ err }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="cf-email">E-mail</label>
+          <input id="cf-email" type="email" formControlName="email"
+                 placeholder="aicha&commat;entreprise.ci"
+                 autocomplete="email"
+                 [attr.aria-invalid]="errorFor('email') ? 'true' : null"
+                 aria-describedby="cf-email-err" />
+          @if (errorFor('email'); as err) {
+            <span class="err" id="cf-email-err">{{ err }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="cf-org">
+            Entreprise <span class="hint">(optionnel)</span>
+          </label>
+          <input id="cf-org" type="text" formControlName="org"
+                 placeholder="Acme SARL"
+                 autocomplete="organization" />
+        </div>
+
+        <div class="form-field">
+          <label for="cf-kind">Sujet</label>
+          <select id="cf-kind" formControlName="kind">
+            @for (s of subjects; track s) {
+              <option [value]="s">{{ s }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-field full">
+          <label for="cf-msg">Message</label>
+          <textarea id="cf-msg" formControlName="message"
+                    placeholder="Quelques lignes sur votre projet, vos délais, et comment je peux vous aider."
+                    [attr.aria-invalid]="errorFor('message') ? 'true' : null"
+                    aria-describedby="cf-msg-err"></textarea>
+          @if (errorFor('message'); as err) {
+            <span class="err" id="cf-msg-err">{{ err }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <span class="form-note">↩ Réponse habituelle sous 48 h</span>
+        <button type="submit" class="btn-submit" [disabled]="submitting()">
+          @if (submitting()) {
+            <span>Envoi…</span>
+          } @else {
+            <span>Envoyer le message</span>
+            <app-icon name="send" />
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

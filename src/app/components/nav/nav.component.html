@@ -1,0 +1,17 @@
+<nav class="nav" [class.scrolled]="scrolled()" aria-label="Navigation principale">
+  <a href="#top" class="nav-brand" aria-label="Accueil bko.dev">
+    <span class="nav-dot" aria-hidden="true"></span>
+    <span class="mono">bko<span class="brand-dot">.</span>dev</span>
+  </a>
+
+  <div class="nav-links">
+    @for (s of sections; track s.id) {
+      <a [href]="'#' + s.id" class="nav-link" [class.active]="active() === s.id">
+        <span class="idx">{{ s.idx }}</span>
+        <span>{{ s.label }}</span>
+      </a>
+    }
+  </div>
+
+  <a href="#contact" class="nav-cta">Prendre contact</a>
+</nav>

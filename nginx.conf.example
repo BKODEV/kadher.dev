@@ -1,0 +1,63 @@
+# /etc/nginx/sites-available/bkodev.conf
+# Configuration nginx pour le portfolio Angular (prérendu statique).
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name bkodev.com www.bkodev.com;
+
+    # Redirige tout vers HTTPS
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name bkodev.com www.bkodev.com;
+
+    # Certificats (Let's Encrypt)
+    ssl_certificate     /etc/letsencrypt/live/bkodev.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/bkodev.com/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+
+    # Racine = dossier "browser" du build Angular prérendu
+    root /var/www/bkodev/browser;
+    index index.html;
+
+    # Sécurité
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "interest-cohort=()" always;
+
+    # Compression
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_types
+        text/plain text/css text/javascript text/xml
+        application/json application/javascript application/xml+rss
+        application/atom+xml image/svg+xml;
+
+    # Cache long pour les assets versionnés (hash dans le nom)
+    location ~* \.(?:css|js|woff2?|ttf|eot|otf|jpg|jpeg|png|gif|webp|avif|svg|ico)$ {
+        expires 1y;
+        access_log off;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+
+    # Pas de cache sur les HTML (révision Angular au prochain déploiement)
+    location ~* \.html$ {
+        expires -1;
+        add_header Cache-Control "no-cache, must-revalidate";
+    }
+
+    # Fallback SPA : toute route inconnue retombe sur index.html
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

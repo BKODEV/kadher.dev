@@ -1,0 +1,90 @@
+:host { display: block; }
+
+.projects { display: flex; flex-direction: column; gap: 18px; }
+
+.project {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color .3s ease;
+}
+.project:hover { border-color: var(--border-2); }
+.project-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 0;
+  min-height: 320px;
+}
+@media (max-width: 900px) { .project-inner { grid-template-columns: 1fr; } }
+
+.project-body { padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+.project-meta {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase;
+}
+.project-meta .pill {
+  padding: 4px 9px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent);
+  letter-spacing: 0.08em;
+}
+.project h3 {
+  margin: 0; font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em;
+}
+.project p {
+  margin: 0; color: var(--text-dim); font-size: 15.5px;
+  max-width: 56ch;
+}
+.project-stats {
+  display: flex; gap: 28px; flex-wrap: wrap;
+  margin-top: 6px;
+}
+.project-stats .ps .n {
+  font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.project-stats .ps .n .accent { color: var(--accent); }
+.project-stats .ps .l {
+  font-family: var(--font-mono); font-size: 10.5px;
+  color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-top: 2px;
+}
+.project-tech {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto;
+}
+.project-tech .t {
+  font-family: var(--font-mono); font-size: 11.5px;
+  padding: 4px 9px; border-radius: 6px;
+  background: var(--bg-2); border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.project-visual {
+  position: relative;
+  background: linear-gradient(135deg, var(--bg-2), var(--surface-2));
+  border-left: 1px solid var(--border);
+  overflow: hidden;
+}
+@media (max-width: 900px) {
+  .project-visual { border-left: none; border-top: 1px solid var(--border); min-height: 220px; }
+}
+
+.viz {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px;
+}
+.viz-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.4;
+  mask-image: radial-gradient(circle at 50% 50%, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000, transparent 75%);
+}
+.viz-svg { max-width: 340px; position: relative; }
