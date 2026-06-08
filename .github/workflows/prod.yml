@@ -1,0 +1,74 @@
+name: Kaida- frontend CI/CD Production
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Angular Project
+        run: npm run build -- --configuration=production
+
+      - name: Deploy Application
+        env:
+          PROD_SSH_PRIVATE_KEY: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+          PROD_SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          PROD_SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
+        run: |
+          # Définition des variables pour la production
+          echo "Deploying to Production Server"
+          SSH_PRIVATE_KEY="$PROD_SSH_PRIVATE_KEY"
+          SSH_USER="$PROD_SSH_USER"
+          SSH_HOST="$PROD_SSH_HOST"
+          DEPLOY_PATH="/var/www/kadher.dev/frontend"
+
+          # Configuration de la clé SSH
+          echo "$SSH_PRIVATE_KEY" > private_key
+          chmod 600 private_key
+
+          # Création du dossier temporaire sur le serveur
+          ssh -i private_key -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "
+            sudo mkdir -p /home/tmp/new-kadher.dev &&
+            sudo chown -R $SSH_USER:$SSH_USER /home/tmp/new-kadher.dev &&
+            sudo chmod -R 755 /home/tmp/new-kadher.dev
+          "
+
+          # Synchronisation des fichiers Angular vers le serveur temporaire
+          rsync -avz --delete -e "ssh -i private_key -o StrictHostKeyChecking=no" dist/kadher.dev/browser/ $SSH_USER@$SSH_HOST:/home/tmp/new-kadher.dev/
+
+          # Déploiement vers le dossier final et mise à jour des permissions
+          ssh -i private_key -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "
+            sudo rsync -avz --delete /home/tmp/new-kadher.dev/ $DEPLOY_PATH/ &&
+            sudo chown -R www-data:www-data $DEPLOY_PATH &&
+            sudo chmod -R 755 $DEPLOY_PATH
+          "
+
+          # Redémarrage de Nginx et nettoyage
+          ssh -i private_key -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "
+            sudo systemctl restart nginx &&
+            sudo rm -rf /home/tmp/new-kadher.dev
+          "
+
+          # Nettoyage de la clé SSH
+          rm private_key
+
+      - name: Debug Info
+        run: |
+          echo "Tag Name: ${{ github.ref_name }}"
+          echo "Deploy Path: $DEPLOY_PATH"
+          echo "Server Host: $SSH_HOST"

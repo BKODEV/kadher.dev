@@ -8,6 +8,20 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+/**
+ * Ajoute la classe `.in` à l'élément hôte la première fois qu'il entre
+ * dans le viewport. Les règles `.reveal` de `styles.scss` se servent de
+ * cette classe pour faire apparaître l'élément (fondu + translation).
+ *
+ * - Applique `.in` immédiatement si l'utilisateur préfère le mouvement
+ *   réduit, ou en SSR / quand `IntersectionObserver` n'existe pas — le
+ *   contenu ne reste donc jamais invisible.
+ * - L'observer se déconnecte après le premier déclenchement : il s'agit
+ *   d'animations d'entrée, pas d'états toggleables.
+ *
+ * Usage : `<div appReveal>...</div>`. Seuil personnalisable via
+ * `[revealThreshold]="0.3"`.
+ */
 @Directive({
   selector: '[appReveal]',
   host: {

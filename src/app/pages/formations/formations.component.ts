@@ -1,6 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+/**
+ * Page placeholder pour la future section « /formations ».
+ *
+ * La route est déclarée avec `data: { enabled: false }` dans
+ * `app.routes.ts` comme signal qu'il s'agit d'un stub. Pour la mettre
+ * en ligne : remplacer le template par du vrai contenu et supprimer le
+ * flag `enabled: false`.
+ */
 @Component({
   selector: 'app-formations',
   imports: [RouterLink],

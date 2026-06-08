@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+/** Pied de page du site — ligne de signature, utilisée à la fois sur
+ *  la page d'accueil et sur les pages d'études de cas. */
 @Component({
   selector: 'app-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,5 +1,11 @@
+/* -------------------------------------------------------------
+ * Section Hero (above-the-fold)
+ * Empile : photo de fond > grille décorative > glow > contenu.
+ * Z-index : photo -3, grille -2, glow -1, contenu 2.
+ * ------------------------------------------------------------- */
 :host { display: block; }
 
+/* ---------- Conteneur plein écran + isolation z-index ---------- */
 .hero-wrap {
   position: relative;
   min-height: 100vh;
@@ -14,6 +20,7 @@
   margin: 0 auto;
   display: flex; flex-direction: column; justify-content: center;
 }
+/* ---------- Couches décoratives de fond (photo, grille, glow) ---------- */
 .hero-photo {
   position: absolute; inset: 0;
   background-image: url('/assets/images/hero.jpg');
@@ -51,6 +58,7 @@
   opacity: 0.5;
   z-index: -1;
 }
+/* ---------- Contenu principal (méta, titre, tagline, CTA) ---------- */
 .hero-inner { position: relative; z-index: 2; max-width: 820px; }
 
 .hero-meta {
@@ -102,12 +110,28 @@
   color: var(--text-dim);
   font-size: clamp(16px, 1.6vw, 19px);
   line-height: 1.55;
-  margin: 0 0 36px;
+  margin: 0 0 14px;
   text-wrap: pretty;
+}
+
+.hero-services {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 6px 10px;
+  margin: 0 0 36px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.hero-services .dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
 }
 
 .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 
+/* ---------- Ticker en pied de hero (LIEU · HEURE · STACK · STATUT) ---------- */
 .hero-ticker {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 18px var(--gutter);

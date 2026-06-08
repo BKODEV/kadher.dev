@@ -14,9 +14,23 @@ import {
   withEventReplay,
   withIncrementalHydration,
 } from '@angular/platform-browser';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { routes } from './app.routes';
 
+/**
+ * Providers de l'application côté navigateur.
+ *
+ * Choix notables :
+ * - `provideZonelessChangeDetection()` — l'app est entièrement pilotée
+ *   par les signals, donc Zone.js est inutile.
+ * - `withInMemoryScrolling` + `withViewTransitions` — défilement vers
+ *   les ancres (ex. `/#projects`) et API View Transitions native pour
+ *   les changements de route.
+ * - `withIncrementalHydration` — requis par les blocs
+ *   `@defer (hydrate ...)` du home : les sections différées sont rendues
+ *   côté serveur mais leur JS ne s'hydrate qu'au déclenchement.
+ */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -28,5 +42,6 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions(),
     ),
     provideClientHydration(withEventReplay(), withIncrementalHydration()),
+    provideHttpClient(withFetch()),
   ],
 };

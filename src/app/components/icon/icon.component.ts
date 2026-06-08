@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
+/** Nom de chaque glyphe disponible dans {@link IconComponent}. */
 export type IconName =
   | 'arrow'
   | 'send'
@@ -9,6 +10,12 @@ export type IconName =
   | 'linkedin'
   | 'github';
 
+/**
+ * Jeu d'icônes SVG partagé pour les petites icônes inline (CTA, lignes
+ * de contact, …). Les icônes stroke suivent la convention Feather
+ * (24×24, `currentColor`), donc la couleur et l'épaisseur héritent du
+ * style texte du parent.
+ */
 @Component({
   selector: 'app-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,

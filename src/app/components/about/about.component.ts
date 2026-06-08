@@ -3,11 +3,18 @@ import { NgOptimizedImage } from '@angular/common';
 import { CountUpDirective } from '../../directives/count-up.directive';
 import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
+/** Une ligne clé/valeur du panneau « Aperçu · 2026 » en bas du composant. */
 interface SnapshotRow {
   readonly k: string;
   readonly v: string;
 }
 
+/**
+ * Section « À propos » — portrait, paragraphes de bio et carte snapshot
+ * (stats animées + lignes clé/valeur). Les chiffres de stats utilisent
+ * la directive `appCountUp` pour s'animer de 0 la première fois que la
+ * section entre dans le viewport.
+ */
 @Component({
   selector: 'app-about',
   imports: [NgOptimizedImage, CountUpDirective, RevealOnScrollDirective],
@@ -24,8 +31,8 @@ export class AboutComponent {
   ] as const;
 
   readonly snapshotRows: readonly SnapshotRow[] = [
-    { k: 'POSTE', v: 'Responsable SI · Consultant indépendant' },
-    { k: 'CLIENT PRINCIPAL', v: 'Innov Immobilier' },
+    { k: 'POSTE', v: 'Responsable SI · Consultant IT' },
+    { k: 'DISPONIBILITÉ', v: 'Freelance · Full-time' },
     { k: 'FORMATION', v: 'BTS Info · Ing. Intelligence Économique' },
     { k: 'BASE', v: 'Abidjan, CI' },
   ];

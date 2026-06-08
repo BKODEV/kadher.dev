@@ -1,18 +1,26 @@
+<!-- ============================================================
+     Section « Contact » (06)
+     Colonne gauche : prose + coordonnées directes.
+     Colonne droite : formulaire réactif avec overlay de succès.
+     ============================================================ -->
 <section class="section" id="contact">
   <div class="section-head" appReveal>
-    <span class="section-num">05 ——</span>
+    <span class="section-num">06 ——</span>
     <h2>Contact</h2>
     <div class="rule"></div>
   </div>
 
   <div class="contact-grid">
     <div class="contact-prose" appReveal>
-      <span class="eyebrow">Construisons ensemble</span>
-      <h3>Un système qui freine votre activité<span class="accent"> ?</span></h3>
+      <span class="eyebrow">Travaillons ensemble</span>
+      <h3>Un projet, une infra, un SI à structurer<span class="accent"> ?</span></h3>
       <p>
-        J'accompagne un nombre limité de clients à la fois — développement full-stack,
-        internalisation IT, ou conseil stratégique. Basé à Abidjan, je travaille avec
-        des équipes en Afrique de l'Ouest et à distance avec des clients internationaux.
+        Vous avez un projet web ou mobile à lancer, une infrastructure à reprendre
+        en main, ou un système d'information à structurer — je vous accompagne de
+        l'audit jusqu'à la mise en production.
+      </p>
+      <p>
+        Basé à Abidjan, disponible en remote.
       </p>
 
       <div class="contact-direct">
@@ -51,6 +59,7 @@
       </div>
     </div>
 
+    <!-- Formulaire réactif : validation + overlay de succès en couvre -->
     <form class="contact-form"
           [formGroup]="form"
           (ngSubmit)="onSubmit()"
@@ -120,6 +129,10 @@
           }
         </div>
       </div>
+
+      @if (error()) {
+        <p class="form-error" role="alert">{{ error() }}</p>
+      }
 
       <div class="form-actions">
         <span class="form-note">↩ Réponse habituelle sous 48 h</span>

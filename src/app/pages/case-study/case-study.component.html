@@ -1,0 +1,91 @@
+<!-- ============================================================
+     Page d'étude de cas (/projets/:slug)
+     Le composant redirige vers l'accueil si le slug est inconnu.
+     Le bloc @if garde le template inerte pendant la microtask de
+     redirection.
+     ============================================================ -->
+@if (study(); as cs) {
+  <!-- En-tête sticky léger : marque + retour aux projets -->
+  <header class="cs-header">
+    <a routerLink="/" fragment="projects" class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="mono">bko<span class="brand-dot">.</span>dev</span>
+    </a>
+    <a routerLink="/" fragment="projects" class="back-link">
+      <span aria-hidden="true">←</span> Retour aux projets
+    </a>
+  </header>
+
+  <!-- Article : meta + titre + 5 (ou 6) sections + projet suivant -->
+  <article class="cs">
+    <div class="cs-meta">
+      <span class="pill">{{ cs.tag }}</span>
+      <span>·</span>
+      <span>{{ cs.year }}</span>
+    </div>
+
+    <h1>{{ cs.name }}</h1>
+
+    <section class="cs-section">
+      <h2>Contexte</h2>
+      <p>{{ cs.context }}</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>Mon rôle</h2>
+      <p>{{ cs.role }}</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>Démarche &amp; choix techniques</h2>
+      @for (para of cs.approach; track $index) {
+        <p>{{ para }}</p>
+      }
+    </section>
+
+    @if (cs.features; as feat) {
+      <section class="cs-section">
+        <h2>{{ feat.title }}</h2>
+        <ul class="features">
+          @for (f of feat.items; track f.label) {
+            <li>
+              <span class="f-label">{{ f.label }}</span>
+              <span class="f-sep" aria-hidden="true">:</span>
+              <span class="f-desc">{{ f.desc }}</span>
+            </li>
+          }
+        </ul>
+      </section>
+    }
+
+    <section class="cs-section">
+      <h2>Résultats mesurables</h2>
+      <ul class="results">
+        @for (r of cs.results; track r) {
+          <li>{{ r }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2>Stack utilisée</h2>
+      <div class="stack-chips">
+        @for (t of cs.stack; track t) {
+          <span class="chip">{{ t }}</span>
+        }
+      </div>
+    </section>
+
+    <!-- CTA cyclique : pointe sur l'étude suivante (voir nextCaseStudy) -->
+    @if (next(); as nx) {
+      <a [routerLink]="['/projets', nx.slug]" class="next-project">
+        <span class="label">Projet suivant</span>
+        <span class="next-name">
+          {{ nx.name }} <span class="arrow" aria-hidden="true">→</span>
+        </span>
+      </a>
+    }
+  </article>
+
+  <app-footer />
+}

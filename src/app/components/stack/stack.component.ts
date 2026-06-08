@@ -1,6 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
+/**
+ * Une carte de la grille « Stack ».
+ * @property learning - Si true, la carte affiche le badge « en cours »
+ *   et ses items prennent une bordure pointillée pour signaler une
+ *   techno exploratoire.
+ */
 interface StackGroup {
   readonly kind: string;
   readonly icon: string;
@@ -8,6 +14,11 @@ interface StackGroup {
   readonly learning?: boolean;
 }
 
+/**
+ * Grille de la stack technique (Frontend / Backend / Bases de données /
+ * Infrastructure / Outils / Mobile / En apprentissage). Purement
+ * présentationnel — toutes les données sont dans le tableau `stack`.
+ */
 @Component({
   selector: 'app-stack',
   imports: [RevealOnScrollDirective],
@@ -35,6 +46,8 @@ export class StackComponent {
     },
   ];
 
+  /** Libellé en haut à droite de la carte : index sur 2 chiffres, ou
+   *  « en cours » pour les technos en apprentissage. */
   indexLabel(i: number, learning?: boolean): string {
     return learning ? 'en cours' : String(i + 1).padStart(2, '0');
   }

@@ -8,6 +8,20 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+/**
+ * Anime le contenu texte de l'élément hôte de 0 jusqu'à un nombre cible
+ * la première fois que la section entre dans le viewport (easing cubic
+ * ease-out, ~1,4 s par défaut).
+ *
+ * - En SSR la valeur finale est rendue directement, ce qui garantit que
+ *   les crawlers et le mode sans JS voient le bon chiffre.
+ * - Respecte `prefers-reduced-motion` : on saute directement à la
+ *   valeur cible.
+ *
+ * Usage : `<span [appCountUp]="46">46</span>`. Le fallback "46" dans le
+ * template garde une sortie SSR correcte si la directive n'a pas encore
+ * eu le temps de s'exécuter.
+ */
 @Directive({
   selector: '[appCountUp]',
 })

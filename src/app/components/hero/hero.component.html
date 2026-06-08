@@ -1,4 +1,10 @@
+<!-- ============================================================
+     Hero / above-the-fold
+     Couches décoratives empilées (photo > grille > glow > glow),
+     puis le contenu principal et le ticker en pied.
+     ============================================================ -->
 <div class="hero-wrap" id="top">
+  <!-- Décor de fond (purement visuel, aria-hidden) -->
   <div class="hero-photo" aria-hidden="true"></div>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
@@ -29,6 +35,14 @@
         pour des entreprises qui n'ont pas le droit à l'erreur.
       </p>
 
+      <p class="hero-services">
+        Développement web &amp; mobile
+        <span class="dot" aria-hidden="true"></span>
+        Infrastructure IT
+        <span class="dot" aria-hidden="true"></span>
+        Conseil Système d'Information
+      </p>
+
       <div class="hero-ctas">
         <a href="#projects" class="btn btn-primary">
           Voir les projets <app-icon name="arrow" />
@@ -39,6 +53,7 @@
       </div>
     </div>
 
+    <!-- Ticker en pied de hero : 4 métadonnées live -->
     <div class="hero-ticker">
       <span><span class="k">LIEU</span> <span class="v">Abidjan, Côte d'Ivoire</span></span>
       <span><span class="k">HEURE</span> <span class="v">{{ time() }}</span></span>

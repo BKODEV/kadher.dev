@@ -1,5 +1,11 @@
+/* -------------------------------------------------------------
+ * Section « Contact »
+ * 2 colonnes : prose + coordonnées directes à gauche, formulaire
+ * à droite. Le formulaire affiche un overlay de succès en couvre.
+ * ------------------------------------------------------------- */
 :host { display: block; }
 
+/* ---------- Grille 2 cols (s'empile sous 900 px) ---------- */
 .contact-grid {
   display: grid; grid-template-columns: 1fr 1.1fr;
   gap: 56px;
@@ -7,6 +13,7 @@
 }
 @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 36px; } }
 
+/* ---------- Colonne prose (eyebrow, titre, paragraphe, coordonnées) ---------- */
 .contact-prose h3 {
   font-size: clamp(28px, 3.4vw, 40px);
   font-weight: 500; letter-spacing: -0.025em;
@@ -36,6 +43,7 @@
 }
 .contact-row a.v:hover { color: var(--accent); }
 
+/* ---------- Formulaire (grille 2 cols, validation reactive) ---------- */
 .contact-form {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -81,6 +89,10 @@
   font-family: var(--font-mono); font-size: 10.5px;
   color: #ff6b7a;
 }
+.form-error {
+  font-family: var(--font-mono); font-size: 12px;
+  color: #ff6b7a; margin: 12px 0 0;
+}
 .form-actions {
   display: flex; align-items: center; justify-content: space-between;
   margin-top: 18px; gap: 12px; position: relative;
@@ -97,6 +109,7 @@
 .btn-submit:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.08); }
 .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
+/* ---------- Overlay de succès affiché par-dessus le formulaire ---------- */
 .success {
   position: absolute; inset: 0;
   background: var(--surface);

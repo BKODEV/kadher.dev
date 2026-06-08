@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://bkodev.com',
+  baseUrl: 'http://localhost:8000',
+  apiUrl: 'http://localhost:8000',
 };

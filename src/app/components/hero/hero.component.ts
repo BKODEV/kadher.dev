@@ -10,6 +10,14 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { IconComponent } from '../icon/icon.component';
 
+/**
+ * Section Hero / above-the-fold.
+ *
+ * Le ticker en bas affiche l'heure courante à Abidjan (Africa/Abidjan,
+ * GMT, sans heure d'été), rafraîchie toutes les 30 s. Le tick ne tourne
+ * qu'en navigateur — en SSR le signal conserve son placeholder pour
+ * éviter de figer une heure de build dans le HTML prérendu.
+ */
 @Component({
   selector: 'app-hero',
   imports: [IconComponent],

@@ -1,5 +1,10 @@
+/* -------------------------------------------------------------
+ * Section « Stack technique »
+ * Grille de cartes 3 cols → 2 cols (≤980) → 1 col (≤620).
+ * ------------------------------------------------------------- */
 :host { display: block; }
 
+/* ---------- Grille responsive des cartes ---------- */
 .stack-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -8,6 +13,7 @@
 @media (max-width: 980px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .stack-grid { grid-template-columns: 1fr; } }
 
+/* ---------- Carte d'une catégorie (Frontend, Backend, …) ---------- */
 .stack-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -47,5 +53,6 @@
   color: var(--text-dim);
   border: 1px solid var(--border);
 }
+/* ---------- Variante « en apprentissage » (bordures pointillées) ---------- */
 .stack-card.learning .stack-icon { background: color-mix(in oklab, var(--accent) 12%, transparent); }
 .stack-card.learning .stack-item { border-style: dashed; }

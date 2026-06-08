@@ -1,3 +1,8 @@
+<!-- ============================================================
+     Section « À propos » (01)
+     Photo + prose à 2 colonnes, puis carte snapshot avec stats
+     animées (appCountUp) et 4 lignes clé/valeur.
+     ============================================================ -->
 <section class="section" id="about">
   <div class="section-head" appReveal>
     <span class="section-num">01 ——</span>
@@ -24,17 +29,17 @@
       </figcaption>
     </figure>
 
+    <!-- Colonne droite : prose + carte snapshot -->
     <div>
       <div class="about-prose" appReveal>
         <p>
           <strong>Consultant IT indépendant</strong>, je conçois et j'opère des systèmes
           digitaux pour des entreprises qui dépendent de leur outil informatique au
-          quotidien. Bases académiques solides — BTS Informatique · Développement d'applications — et sept années
-          de pratique terrain à construire, déployer et maintenir ce que j'ai conçu.
+          quotidien. Je comptabilise Sept années de pratique terrain à construire, déployer et maintenir ce que j'ai conçu.
         </p>
         <p>
           Aujourd'hui Responsable des Systèmes d'Information d'<strong>Innov Immobilier</strong>,
-          une entreprise immobilière spécialisée en appart-hôtel et rénovation. J'y ai
+          leader de la location meublée en Côte d'Ivoire, Entreprise spécialisée en appart-hôtel et rénovation. J'y ai
           mené un projet complet d'internalisation IT — de l'audit infrastructure jusqu'au
           déploiement en production, <strong>zéro interruption</strong> — et je pilote
           l'ERP interne qui fait tourner le métier.
@@ -56,6 +61,7 @@
         </div>
       </div>
 
+      <!-- Carte snapshot : 4 stats animées + 4 lignes clé/valeur -->
       <aside class="snapshot snapshot-strip" appReveal>
         <div class="snapshot-head">
           <span class="dot" aria-hidden="true"></span>
@@ -77,15 +83,15 @@
           </div>
           <div class="stat">
             <div class="num">
-              <span [appCountUp]="46">46</span>
+              <span [appCountUp]="10">10</span><span class="plus">+</span>
             </div>
-            <div class="label">Boîtes mail migrées</div>
+            <div class="label">PME accompagnées</div>
           </div>
           <div class="stat">
             <div class="num">
-              <span [appCountUp]="2">2</span>
+              <span [appCountUp]="0">0</span>
             </div>
-            <div class="label">Entreprises fondées</div>
+            <div class="label">Heure d'arrêt en production</div>
           </div>
         </div>
 
