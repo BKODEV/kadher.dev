@@ -22,13 +22,13 @@ export const routes: Routes = [
     path: 'projets/:slug',
     loadComponent: () =>
       import('./pages/case-study/case-study.component').then(m => m.CaseStudyComponent),
-    title: 'Étude de cas — bko.dev',
+    title: 'Étude de cas — kadher.dev',
   },
   {
     path: 'formations',
     loadComponent: () =>
       import('./pages/formations/formations.component').then(m => m.FormationsComponent),
-    title: 'Formations — bko.dev',
+    title: 'Formations — kadher.dev',
     data: { enabled: false },
   },
   { path: '**', redirectTo: '' },
