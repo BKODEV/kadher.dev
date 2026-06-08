@@ -40,7 +40,7 @@ export class JourneyComponent {
       desc: "Pilotage de la transformation digitale de l'entreprise. ERP interne sur mesure, stack serveur hybride (physique + virtualisée) sous Proxmox, messagerie auto-hébergée, sauvegardes, NextCloud et support de niveau 1.",
     },
     {
-      year: '2024 → présent',
+      year: '2025 → présent',
       title: 'Étudiant Ingénieur · Intelligence Économique',
       org: 'ECG — Abidjan',
       badge: 'En cours',
